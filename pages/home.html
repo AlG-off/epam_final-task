@@ -1,0 +1,104 @@
+<div class="section">
+    <div class="section__title-page">
+        <p class="title-page">Courses</p>
+    </div>
+    <div class="section__dashboard">
+        <div class="dashboard__srch">
+            <input class="srch__fld" type="text" ng-model="search" placeholder="Type phrase for search">
+            <div class="srch__icon">
+                <i class="icon-search"></i>
+            </div>
+        </div>
+        <div class="dashboard__actions dashboard__actions--right-top">
+            <button class="dashboard__btn dashboard__btn--w160"
+                    ng-class="{'dashboard__btn--disable': disableBtnArchive}"
+                    ng-click="setArchivedCourse()"
+                    ng-disabled="disableBtnArchive"
+            >Archive Selected
+            </button>
+            <button class="dashboard__btn dashboard__btn--active" ng-click="addNewCourse()">Add New</button>
+        </div>
+    </div>
+    <div class="section__list-video">
+        <table class="list-video">
+            <thead>
+            <tr class="list-video__head-row">
+                <th class="list-video__col-1 list-video__col-1--center">
+                    <input type="checkbox"
+                           ng-model="allChecked"
+                           ng-change="chooseAllCourses()"
+                    >
+                </th>
+               <th class="list-video__col-2" ng-click="sortCourses.sort('id')">ID
+                    <i ng-class="{'icon-expand_less' : sortCourses.isSortUp('id'),
+                                  'icon-expand_more' : sortCourses.isSortDown('id')}">
+
+                    </i>
+                </th>
+                <th class="list-video__col-3" ng-click="sortCourses.sort('title')">Title
+                    <i ng-class="{'icon-expand_less' : sortCourses.isSortUp('title'),
+                                  'icon-expand_more' : sortCourses.isSortDown('title')}">
+
+                    </i>
+                </th>
+                <th class="list-video__col-4" ng-click="sortCourses.sort('author')">Author
+                    <i ng-class="{'icon-expand_less' : sortCourses.isSortUp('author'),
+                                  'icon-expand_more' : sortCourses.isSortDown('author')}">
+
+                    </i>
+                </th>
+                <th class="list-video__col-5" ng-click="sortCourses.sort('duration')">Duration
+                    <i ng-class="{'icon-expand_less' : sortCourses.isSortUp('duration'),
+                                  'icon-expand_more' :sortCourses.isSortDown('duration')}">
+
+                    </i>
+                </th>
+                <th class="list-video__col-6">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="list-video__row"
+                ng-class="{'list-video__row--disable': course.isArchived}"
+                ng-repeat="course in coursesList | orderBy:sortCourses.fieldName:sortCourses.reverse | filter:search track by course.id"
+            >
+                <td class="list-video__col-1--center">
+                    <input type="checkbox"
+                           ng-model="course.isChecked"
+                           ng-change="activateBtnArchive()"
+                           ng-disabled="course.isArchived"
+                    >
+                </td>
+                <td ng-bind="course.id"></td>
+                <td>
+                    <a class="list-video__link"
+                       ng-class="{'list-video__link--disable': course.isArchived}"
+                       target="_blank"
+                       ng-href="{{course.url}}"
+                       ng-bind="course.title">
+
+                    </a>
+                </td>
+                <td ng-bind="course.author"></td>
+                <td ng-bind="course.duration"></td>
+                <td>
+                    <button class="list-video__btn"
+                            ng-click="editCourse(course)"
+                            ng-show="!course.isArchived"
+                    >Edit
+                    </button>
+                    <button class="list-video__btn"
+                            ng-click="delCourse(course.id, $index)"
+                            ng-show="!course.isArchived"
+                    >Delete
+                    </button>
+                    <button class="list-video__btn"
+                            ng-click="unarchiveCourse(course)"
+                            ng-show="course.isArchived"
+                    >Unarchive
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

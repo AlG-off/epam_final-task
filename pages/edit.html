@@ -1,0 +1,75 @@
+<div class="section section--center">
+    <div class="section__title-page section__title-page--margin26">
+        <p class="title-page" ng-show="{{toState.name == 'add'}}">Add New Course</p>
+        <p class="title-page" ng-show="{{toState.name == 'edit'}}">Edit Course</p>
+    </div>
+    <form name="inputForm">
+        <div class="section__input-block">
+            <p class="input-block__name">Course Title*</p>
+            <input name="title"
+                   type="text"
+                   class="input-block__fld-input"
+                   ng-class="{'input-block__fld-input--err': inputForm.title.$error.pattern && inputForm.title.$dirty}"
+                   ng-model="tempStore.selectedCourse.title"
+                   ng-model-options="{updateOn: 'blur'}"
+                   ng-pattern="/^[0-9 .a-z_а-яё]+$/i"
+                   placeholder="Angularjs authentication"
+                   required
+            />
+            <p class="input-block__hint"
+               ng-show="inputForm.title.$error.pattern && inputForm.title.$dirty"
+            >Course Title can contain letters (a-z, а-я), numbers (0-9), space( ), underscores (_), and periods (.)
+            </p>
+        </div>
+        <div class="section__input-block">
+            <p class="input-block__name">Course Link*</p>
+            <input name="link"
+                   type="text"
+                   class="input-block__fld-input"
+                   ng-class="{'input-block__fld-input--err': inputForm.link.$error.pattern && inputForm.link.$dirty}"
+                   ng-model="tempStore.selectedCourse.url"
+                   ng-model-options="{updateOn: 'blur'}"
+                   ng-pattern="/^https?:\/\/.+$/i"
+                   placeholder="http:// or https://"
+                   required
+            />
+            <p class="input-block__hint"
+                ng-show="inputForm.link.$error.pattern && inputForm.link.$dirty"
+                >
+                Course Link is incorrect
+            </p>
+        </div>
+        <div class="section__input-block">
+            <p class="input-block__name">Course Author</p>
+            <select class="input-block__drop-down-list" ng-model="tempStore.selectedCourse.author">
+                <option value={{author.name}} ng-repeat="author in authorsList" >{{author.name}}</option>
+            </select>
+        </div>
+        <div class="section__input-block">
+            <p class="input-block__name">Course Duration</p>
+            <input type="text"
+                   class="input-block__fld-input input-block__fld-input--w65"
+                   ng-model="tempStore.selectedCourse.duration"
+                   model-view-value ="true"
+                   ui-mask="99:h9:h9"
+                   ui-options="maskOption"
+
+            />
+        </div>
+        <hr>
+        <div class="section__dashboard">
+            <div class="dashboard__actions">
+                <button class="dashboard__btn"
+                        ng-class="{'dashboard__btn--active' : !inputForm.$invalid,
+                                   'dashboard__btn--disable' : inputForm.$invalid}"
+                        ng-disabled="inputForm.$invalid"
+                        ng-click="addCourse()"
+                >
+                    <span ng-show="{{toState.name == 'add'}}">Add</span>
+                    <span ng-show="{{toState.name == 'edit'}}">Save</span>
+                </button>
+                <button class="dashboard__btn" ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

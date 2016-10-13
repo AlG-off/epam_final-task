@@ -1,0 +1,62 @@
+{
+  "coursesList": [
+    {
+      "title": "Основы ES6. Вступление",
+      "url": "https://youtu.be/4YfsAz-sNAo",
+      "author": "Elka",
+      "duration": "23:22:44",
+      "id": 1,
+      "isChecked": false,
+      "isArchived": false
+    },
+    {
+      "title": "Работа фрилансером. GeekBrains",
+      "url": "https://youtu.be/Xc_QvvIXJ7U",
+      "author": "EFervdf",
+      "duration": "11:11:11",
+      "id": 2,
+      "isChecked": false,
+      "isArchived": false
+    },
+    {
+      "title": "Реактивное введение в мобильную разработку под Windows",
+      "url": "https://youtu.be/MlTbekVRWfM",
+      "author": "Academ",
+      "duration": "11:11:11",
+      "id": 3,
+      "isChecked": false,
+      "isArchived": false
+    },
+    {
+      "title": "Знакомство с Babel. Вступление",
+      "url": "https://youtu.be/XVDJxIpiDJw",
+      "author": "EFervdf",
+      "duration": "33:33:33",
+      "isChecked": false,
+      "isArchived": false,
+      "id": 7
+    }
+  ],
+  "authors": [
+    {
+      "id": "4f43",
+      "name": "Ilya"
+    },
+    {
+      "id": "01",
+      "name": "EFervdf"
+    },
+    {
+      "id": "03",
+      "name": "Elka"
+    },
+    {
+      "id": "07",
+      "name": "Brers"
+    },
+    {
+      "name": "Academ",
+      "id": "1576abb962"
+    }
+  ]
+}

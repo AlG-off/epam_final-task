@@ -1,0 +1,53 @@
+<div class="section section--center">
+    <div class="section__title-page section__title-page--margin26">
+        <p class="title-page">Authorization</p>
+    </div>
+    <form name="authForm">
+        <p class="input-block__hint" ng-show="login.authState">Incorrect Username and/or Password</p>
+        <div class="section__input-block">
+            <p class="input-block__name">Username:</p>
+            <input type="text"
+                   name="username"
+                   class="input-block__fld-input"
+                   ng-class="{'input-block__fld-input--err': authForm.username.$error.pattern && authForm.username.$dirty}"
+                   ng-model="login.user.name"
+                   ng-model-options="{updateOn: 'blur'}"
+                   ng-pattern="/^[0-9a-z_]+$/i"
+                   placeholder="Test"
+                   required
+            />
+            <p class="input-block__hint"
+               ng-show="authForm.username.$error.pattern && authForm.username.$dirty"
+                >Username can contain letters (a-z), numbers (0-9), and underscores (_)
+            </p>
+        </div>
+        <div class="section__input-block">
+            <p class="input-block__name">Password:</p>
+            <input type="password"
+                   name="pass"
+                   class="input-block__fld-input"
+                   ng-class="{'input-block__fld-input--err': authForm.pass.$error.pattern && authForm.username.$dirty}"
+                   ng-model="login.user.pass"
+                   ng-model-options="{updateOn: 'blur'}"
+                   ng-pattern="/^[0-9a-z_]+$/i"
+                   placeholder="123"
+                   required
+            />
+            <p class="input-block__hint"
+               ng-show="authForm.pass.$error.pattern && authForm.username.$dirty"
+                >Password can contain letters (a-z), numbers (0-9), and underscores (_)
+            </p>
+        </div>
+        <div class="section__dashboard">
+            <div class="dashboard__actions">
+                <button class="dashboard__btn"
+                        ng-class="{'dashboard__btn--active' : !authForm.$invalid,
+                                   'dashboard__btn--disable' : authForm.$invalid}"
+                        ng-disabled="authForm.$invalid"
+                        ng-click="signin()">
+                    Login
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
